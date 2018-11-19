@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: install deps
-          command: apt-get update && apt-get install -y gcc make cmake sudo pkg-config libssl-dev libconfig-dev libnl-3-dev libnl-genl-3-dev kmod iw
+          command: apt-get update && apt-get install -y gcc make cmake sudo pkg-config libssl-dev libconfig-dev libnl-3-dev libnl-genl-3-dev kmod iw git
       - run:
           name: install hwsim
           command: git clone --depth=1 https://github.com/ramonfontes/mac80211_hwsim_mgmt.git && cd mac80211_hwsim_mgmt && sudo make install
