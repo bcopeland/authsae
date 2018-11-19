@@ -4,6 +4,6 @@
 #
 for t in $(realpath $(dirname $0)/test*.sh); do
     echo "Running '$(basename $t)'..."
-    $t
+    $t || exit 1
 done
 
