@@ -8,7 +8,6 @@
 dmesg -n 1
 cd /local/tests
 echo "--- begin tests ---"
-# ./run_tests.sh
-./test001.sh
+./run_tests.sh test001.sh
 echo "--- end tests ---"
 poweroff -f
