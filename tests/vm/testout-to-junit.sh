@@ -3,7 +3,7 @@
 numtests=$(cat testout.log | grep -E "^test" | wc -l)
 echo '<testsuite tests="'$numtests'">'
 cat testout.log | grep -E "^test" | awk '{
-   split($0, x, "PASS|FAIL", seps)
+   split($0, x, "PASS|FAIL: ", seps)
    testname=x[1];
    if (seps[1] == "PASS") {
      print "  <testcase classname=\"authsae\" name=\"" testname "\"/>";
