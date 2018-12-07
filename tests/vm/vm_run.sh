@@ -11,10 +11,10 @@ ROOTFS=testing-vm-rootfs.img
 # the rootfs fstab mounts /dev/local with 9p in /local.  It should
 # have iw and so on installed.
 if [ ! -f $KERNEL ]; then
-    curl -O "https://github.com/bcopeland/testing-vm/releases/download/v1.0/$KERNEL"
+    curl -L -O "https://github.com/bcopeland/testing-vm/releases/download/v1.0/$KERNEL"
 fi
 if [ ! -f $ROOTFS ]; then
-    curl -O "https://github.com/bcopeland/testing-vm/releases/download/v1.0/$ROOTFS.xz"
+    curl -L -O "https://github.com/bcopeland/testing-vm/releases/download/v1.0/$ROOTFS.xz"
     xz -d $ROOTFS.xz
 fi
 
