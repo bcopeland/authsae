@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 #
 # mixed HT/non-HT neighbors can peer
 #
