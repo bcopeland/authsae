@@ -21,4 +21,6 @@ $QEMU \
   -fsdev local,security_model=none,id=fsdev-local,path=../.. \
   -device virtio-9p-pci,id=fs-local,fsdev=fsdev-local,mount_tag=/dev/local \
   -serial mon:stdio -nographic -vga none \
-  -append "root=/dev/vda console=ttyS0"
+  -append "root=/dev/vda console=ttyS0" | tee testout.log
+
+./testout-to-junit.sh testout.log > results.xml
