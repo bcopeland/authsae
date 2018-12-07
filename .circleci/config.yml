@@ -14,5 +14,7 @@ jobs:
       - run:
           name: test
           command: cd tests/vm && ./vm_run.sh
+      - store_artifacts:
+          path: tests/vm/testout
       - store_test_results:
-          path: tests
+          path: tests/vm/testout

@@ -18,12 +18,18 @@ if [ ! -f $ROOTFS ]; then
     xz -d $ROOTFS.xz
 fi
 
+export TESTOUT=$(/bin/pwd)/testout
+export LOGDIR=$TESTOUT/logs
+
+mkdir -p $LOGDIR
+mkdir -p $TESTOUT/vmtests
+
 $QEMU \
   -kernel $KERNEL \
   -drive file=$ROOTFS,format=raw,if=virtio \
   -fsdev local,security_model=none,id=fsdev-local,path=../.. \
   -device virtio-9p-pci,id=fs-local,fsdev=fsdev-local,mount_tag=/dev/local \
   -serial mon:stdio -nographic -vga none \
-  -append "root=/dev/vda console=ttyS0" | tee testout.log
+  -append "root=/dev/vda console=ttyS0" | tee $LOGDIR/testout.log
 
-./testout-to-junit.sh testout.log > results.xml
+./testout-to-junit.sh $LOGDIR/testout.log > testout/vmtests/results.xml
