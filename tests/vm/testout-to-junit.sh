@@ -1,8 +1,9 @@
 #!/bin/bash
 # junit-ize the results from testout.log
-numtests=$(cat testout.log | grep -E "^test" | wc -l)
+logfile=$1
+numtests=$(cat $logfile | grep -E "^test" | wc -l)
 echo '<testsuite tests="'$numtests'">'
-cat testout.log | grep -E "^test" | awk '{
+cat $logfile | grep -E "^test" | awk '{
    split($0, x, "PASS|FAIL: ", seps)
    testname=x[1];
    if (seps[1] == "PASS") {
