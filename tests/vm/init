@@ -11,4 +11,4 @@ echo "--- begin tests ---"
 # ./run_tests.sh
 ./test001.sh
 echo "--- end tests ---"
-poweroff
+poweroff -f

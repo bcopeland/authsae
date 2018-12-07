@@ -1,6 +1,9 @@
 #!/bin/bash
 # run tests inside a VM, for CI.
 
+# kvm passthrough isn't available in circle ci
+QEMU=${QEMU:-qemu-system-x86_64}
+
 # download a VM kernel from some random location on the internet
 # the rootfs fstab mounts /dev/local with 9p in /local.  It should
 # have iw and so on installed.
@@ -11,9 +14,6 @@ if [ ! -f authsae-vm.img ]; then
     curl -O 'https://bobcopeland.com/srcs/authsae-vm.img.xz'
     xz -d authsae-vm.img.xz
 fi
-
-# kvm isn't available in circle ci
-QEMU=qemu-system-x86_64
 
 $QEMU \
   -kernel authsae-vm-kernel \
