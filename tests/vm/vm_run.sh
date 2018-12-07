@@ -5,14 +5,17 @@
 # the rootfs fstab mounts /dev/local with 9p in /local.  It should
 # have iw and so on installed.
 if [ ! -f authsae-vm-kernel ]; then
-    curl 'https://bobcopeland.com/srcs/authsae-vm-kernel'
+    curl -O 'https://bobcopeland.com/srcs/authsae-vm-kernel'
 fi
 if [ ! -f authsae-vm.img ]; then
-    curl 'https://bobcopeland.com/srcs/authsae-vm.img.xz'
+    curl -O 'https://bobcopeland.com/srcs/authsae-vm.img.xz'
     xz -d authsae-vm.img.xz
 fi
 
-kvm \
+# kvm isn't available in circle ci
+QEMU=qemu-system-x86_64
+
+$QEMU \
   -kernel authsae-vm-kernel \
   -drive file=authsae-vm.img,format=raw,if=virtio \
   -fsdev local,security_model=none,id=fsdev-local,path=../.. \
