@@ -5,7 +5,7 @@
 # This gets execed by the VM's init once the parent directory is
 # mounted under /local.
 #
-dmesg -n 1
+dmesg -n 8
 cd /local/tests
 echo "--- begin tests ---"
 export LOGDIR=/local/tests/vm/testout/logs
